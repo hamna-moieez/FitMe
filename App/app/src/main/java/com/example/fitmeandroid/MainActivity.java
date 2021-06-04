@@ -2,6 +2,7 @@ package com.example.fitmeandroid;
 
 import android.os.Bundle;
 
+import com.example.fitmeandroid.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +11,6 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.fitmeandroid.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 

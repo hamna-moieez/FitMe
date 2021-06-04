@@ -7,9 +7,53 @@
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Log in</string>
+    <string name="action_sign_up">Sign Up</string>
     <string name="action_sign_in_short">Sign in</string>
+    <string name="continue_on">Continue</string>
+
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
+    <string name="pick_date">Date of Birth</string>
+    <string name="about_sum">Tell us a few of the details about yourself to help us optimize the application according to your personal goals.</string>
+    <string-array name="gender_list">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="calorie_list">
+        <item>1000kcal</item>
+        <item>1200kcal</item>
+        <item>1500kcal</item>
+        <item>1800kcal</item>
+        <item>2000kcal</item>
+        <item>2500kcal</item>
+    </string-array>
+
+    <string-array name="weight_list">
+        <item>100 or less</item>
+        <item>100 - 150</item>
+        <item>151 - 200</item>
+        <item>201 - 250</item>
+        <item>251 - 300</item>
+        <item>301 - 350</item>
+        <item>351 - 400</item>
+        <item>401 or more</item>
+
+    </string-array>
+
+    <string-array name="height_list">
+        <item>150 or less</item>
+        <item>150 - 154</item>
+        <item>155 - 159</item>
+        <item>160 - 164</item>
+        <item>165 - 169</item>
+        <item>170 - 174</item>
+        <item>175 - 179</item>
+        <item>180 - 184</item>
+        <item>185 or more</item>
+    </string-array>
 </resources>

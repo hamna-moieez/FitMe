@@ -23,22 +23,23 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fitmeandroid.AboutActivity;
 import com.example.fitmeandroid.MainActivity;
 import com.example.fitmeandroid.R;
 import com.example.fitmeandroid.ui.login.LoginViewModel;
 import com.example.fitmeandroid.ui.login.LoginViewModelFactory;
-import com.example.fitmeandroid.databinding.ActivityLoginBinding;
+import com.example.fitmeandroid.databinding.ActivitySignUpBinding;
 
-public class LoginActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
-    private ActivityLoginBinding binding;
+    private ActivitySignUpBinding binding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
@@ -46,8 +47,8 @@ public class LoginActivity extends AppCompatActivity {
 
         final EditText usernameEditText = binding.username;
         final EditText passwordEditText = binding.password;
-        final Button loginButton = binding.login;
-        final Button createAccButton = binding.createAcc;
+        final Button signupButton = binding.signup;
+        final Button haveAccButton = binding.haveAcc;
         final ProgressBar loadingProgressBar = binding.loading;
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
@@ -56,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (loginFormState == null) {
                     return;
                 }
-                loginButton.setEnabled(loginFormState.isDataValid());
+                signupButton.setEnabled(loginFormState.isDataValid());
                 if (loginFormState.getUsernameError() != null) {
                     usernameEditText.setError(getString(loginFormState.getUsernameError()));
                 }
@@ -117,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loadingProgressBar.setVisibility(View.VISIBLE);
@@ -125,22 +126,21 @@ public class LoginActivity extends AppCompatActivity {
                         passwordEditText.getText().toString());
             }
         });
-        createAccButton.setOnClickListener(new View.OnClickListener() {
+        haveAccButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(LoginActivity.this, SignUpActivity.class);
-                LoginActivity.this.startActivity(myIntent);
+                Intent myIntent = new Intent(SignUpActivity.this, LoginActivity.class);
+                SignUpActivity.this.startActivity(myIntent);
             }
         });
-
     }
 
     private void updateUiWithUser(LoggedInUserView model) {
 //        String welcome = getString(R.string.welcome) + model.getDisplayName();
         // TODO : initiate successful logged in experience
 //        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
-        Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
-        LoginActivity.this.startActivity(myIntent);
+        Intent myIntent = new Intent(SignUpActivity.this, AboutActivity.class);
+        SignUpActivity.this.startActivity(myIntent);
     }
 
     private void showLoginFailed(@StringRes Integer errorString) {

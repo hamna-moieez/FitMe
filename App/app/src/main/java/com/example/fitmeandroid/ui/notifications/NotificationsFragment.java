@@ -12,8 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.fitmeandroid.R;
 import com.example.fitmeandroid.databinding.FragmentProfileBinding;
+
 
 public class NotificationsFragment extends Fragment {
 
