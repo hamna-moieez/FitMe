@@ -4,19 +4,272 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/blue_bg"
     tools:context=".ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/text_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
+    <TextureView
+        android:id="@+id/textureView"
+        android:layout_width="446dp"
+        android:layout_height="798dp"
+        android:backgroundTint="#190606"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.142" />
+
+    <Button
+        android:id="@+id/cameraBtn"
+        android:layout_width="72dp"
+        android:layout_height="61dp"
+        android:background="@null"
+        android:foregroundTint="#FFFFFF"
+        android:textColor="#FFFFFF"
+        app:icon="@android:drawable/btn_radio"
+        app:iconTint="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.978"
+        android:layout_marginBottom="50dp"
+        app:rippleColor="#FFFFFF" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="400dp"
+        android:layout_height="384dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardElevation="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/textureView"
+        app:layout_constraintVertical_bias="0.983">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFFFFF"
+            android:foregroundTint="#E84545"
+            android:indeterminate="false"
+            android:indeterminateTint="@color/orange_base"
+            android:indeterminateTintMode="add"
+            android:max="100"
+            android:minWidth="300dp"
+            android:minHeight="50dp"
+            android:outlineAmbientShadowColor="#E84545"
+            android:outlineProvider="paddedBounds"
+            android:padding="1dp"
+            android:outlineSpotShadowColor="#E84545"
+            android:progress="1"
+            android:progressBackgroundTint="#FFFFFF"
+            android:progressBackgroundTintMode="add"
+            android:progressTint="#E84545"
+            android:secondaryProgressTint="#E84545"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textureView" />
+
+        <ProgressBar
+            android:id="@+id/progressBar_cyclic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="160dp"
+            android:layout_marginTop="160dp"
+            android:minWidth="50dp"
+            android:minHeight="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/top_choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="170dp"
+            android:layout_marginTop="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:fontFamily="@font/quicksand_bold"
+            android:textColor="@color/white"
+            android:textSize="25sp"/>
+
+        <TableLayout
+            android:id="@+id/top_choices"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchColumns="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/progressBar">
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="64dp"
+                    android:layout_marginStart="15dp"
+                    android:fontFamily="@font/quicksand_bold"
+                    android:text="@string/top_choices"
+                    android:textColor="@color/black"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_column="1"
+                    android:padding="3dip"/>
+
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/choice_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/quicksand_bold"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_column="1"
+                    
+                    android:padding="3dip" />
+
+                <ImageView
+                    style="@style/Widget.AppCompat.ActionButton"
+                    android:id="@+id/add_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/ic_add_foreground"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/choice_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/quicksand_bold"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_column="1"
+                    android:padding="3dip" />
+
+                <ImageView
+                    style="@style/Widget.AppCompat.ActionButton"
+                    android:id="@+id/add_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/ic_add_foreground"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/choice_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/quicksand_bold"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_column="1"
+
+                    android:padding="3dip" />
+
+                <ImageView
+                    style="@style/Widget.AppCompat.ActionButton"
+                    android:id="@+id/add_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/ic_add_foreground"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/choice_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/quicksand_bold"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_column="1"
+
+                    android:padding="3dip" />
+
+                <ImageView
+                    style="@style/Widget.AppCompat.ActionButton"
+                    android:id="@+id/add_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/ic_add_foreground"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/choice_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/quicksand_bold"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_column="1"
+
+                    android:padding="3dip" />
+
+                <ImageView
+                    style="@style/Widget.AppCompat.ActionButton"
+                    android:id="@+id/add_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/ic_add_foreground"/>
+            </TableRow>
+
+
+        </TableLayout>
+
+    </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

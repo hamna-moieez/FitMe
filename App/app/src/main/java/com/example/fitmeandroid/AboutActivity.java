@@ -22,6 +22,8 @@ public class AboutActivity extends AppCompatActivity{
     public static TextView dateTxt;
     public AutoCompleteTextView mac1, mac2, mac3, mac4;
     private String[] gender, calorie, weight, height;
+    private Button userInfo;
+    private UserManager uManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,13 +49,8 @@ public class AboutActivity extends AppCompatActivity{
         mac3.setAdapter(adapter3);
         mac4.setAdapter(adapter4);
 
-//        Button button2 = (Button) findViewById(R.id.continue_forward);
-//        button2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//                view.getContext().startActivity(intent);}
-//        });
+        userInfo = findViewById(R.id.add_user_info);
+        userInfo.setOnClickListener(view -> userInformation());
 
     }
 
@@ -84,8 +81,15 @@ public class AboutActivity extends AppCompatActivity{
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
-    public void sendMessage(View v) {
+    public void userInformation() {
         // Do something in response to button
+        String dob = dateTxt.getText().toString();
+        String gen = mac1.getText().toString();
+        String cal = mac2.getText().toString();
+        String h = mac3.getText().toString();
+        String w = mac4.getText().toString();
+        uManager = new UserManager();
+        uManager.addUserInfo(dob, gen, cal, h, w);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

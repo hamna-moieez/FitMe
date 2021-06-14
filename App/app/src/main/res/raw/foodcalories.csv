@@ -1,0 +1,139 @@
+fruits, Banana, 88.80
+fruits, Custard Apple, 100.74
+fruits, Grapes, 68.87
+fruits, Guava, 67.27
+fruits, Kiwi, 61.20
+fruits, Lemon, 29.31
+fruits, Peach, 39.33
+fruits, Pineapple, 50.06
+chicken, Butter Chicken, 140.00
+chicken, Chicken Caesar Salad, 126.86
+chicken, Chicken Fried Steak, 151.07
+chicken, Chicken Marsala, 96.00
+chicken, Chicken Parmesan, 110.13
+chicken, Chicken Pot Pie, 222.85
+chicken, Chicken Tikka Masala, 80.91
+chicken, Orange Chicken, 259.26
+chicken, Tandoori Chicken, 113.14
+chicken, Chicken Bouillon, 4.15
+chicken, Chicken Broth, 15.98
+chicken, Chicken Gumbo Soup, 22.95
+chicken, Chicken Stock, 15.98
+chicken, Chicken Vegetable Soup, 31.05
+chicken, Chicken Breast, 163.38
+chicken, Chicken Fajita, 146.85
+chicken, Chicken McNuggets, 300.00
+chicken, Chicken Nuggets, 295.00
+chicken, Chicken Sandwich, 241.18
+chicken, Chicken Teriyaki Sandwich, 137.97
+chicken, Chicken Wings, 324.14
+meat, Meat Pie, 241.67
+meat, Meatloaf, 253.87
+meat, Meatball Soup, 48.98
+meat, Meatball Sandwich, 160.87
+noodle, Beef Noodle Soup, 34.02
+noodle, Chicken Noodle Soup, 25.00
+noodle, Creamy Chicken Noodle Soup, 22.86
+noodle, Noodle Soup, 34.02
+noodle, Egg Noodles, 384.21
+noodle, Glass Noodles, 192.86
+noodle, Whole Grain Noodles, 346.43
+noodle, Shirataki Noodles, 17.86
+noodle, Soy Noodles, 216.07
+noodle, Cellophane Noodles, 350.71
+rice, Tomato Rice Soup, 46.96
+rice, Brown Rice, 388.21
+rice, Rice Bran Oil, 375.00
+rice, Fried Rice, 185.96
+rice, Black Rice, 323.00
+rice, Brown Rice, 362.16
+ice cream, Butter Pecan Ice Cream, 247.79
+ice cream, Chocolate Chip Ice Cream, 215.28
+ice cream, Chocolate Ice Cream, 216.67
+ice cream, Coffee Ice Cream, 236.11
+ice cream, Cookie Dough Ice Cream, 200.00
+ice cream, French Vanilla Ice Cream, 201.39
+ice cream, Ice Cream Sandwich, 236.61
+ice cream, Ice Cream Sundae, 142.13
+ice cream, Mint Chocolate Chip Ice Cream, 238.89
+ice cream, Rocky Road Ice Cream, 256.64
+ice cream, Snickers Ice Cream, 360.00
+ice cream, Strawberry Ice Cream, 236.11
+ice cream, Vanilla Ice Cream, 201.39
+pasta, Spaghetti Bolognese, 132.16
+pasta, Cheese Tortellini, 291.15
+pasta, Low Carb Pasta, 282.14
+pasta, Penne, 351.79
+pasta, Penne Rigate, 369.64
+pasta, Spaghetti, 369.64
+pasta, Spinach Tortellini, 313.73
+pasta, Spirelli, 367.86
+pasta, Tagliatelle, 369.64
+pasta, Tortellini, 291.15
+pasta, Whole Grain Spaghetti, 351.79
+pizza, Pizza, 266.67
+pizza, BBQ Chicken Pizza, 234.09
+pizza, BBQ Pizza, 224.29
+pizza, Beef Pizza, 303.83
+pizza, Bianca Pizza, 245.99
+pizza, Buffalo Chicken Pizza, 252.10
+pizza, Calabrese Pizza, 235.19
+pizza, Chicken Pizziola, 140.94
+pizza, Capricciosa Pizza, 259.46
+pizza, Cheese Pizza, 266.67
+pizza, Chicken Pizza, 234.09
+pizza, Deep Dish Pizza, 265.25
+pizza, Dominos Philly Cheese Steak Pizza, 223.90
+pizza, Four Cheese Pizza, 221.24
+pizza, Goat Cheese Pizza, 219.05
+pizza, Grilled Pizza, 225.81
+pizza, Hawaiian Pizza, 114.93
+pizza, Margherita Pizza, 274.60
+pizza, Mozzarella Pizza, 248.39
+pizza, Mushroom Pizza, 212.15
+pizza, Napoli Pizza, 201.63
+pizza, New York Style Pizza, 168.93
+pizza, Pepperoni Pizza, 254.93
+pizza, Pizza Dough, 228.07
+pizza, Pizza Hut Stuffed Crust Pizza, 255.03
+pizza, Pizza Hut Supreme Pizza, 247.97
+pizza, Pizza Rolls, 250.00
+pizza, Quattro Formaggi Pizza, 248.12
+pizza, Red Pepper Pizza, 191.86
+pizza, Salami Pizza, 254.93
+pizza, Sausage Pizza, 245.83
+pizza, Seafood Pizza, 244.74
+pizza, Shrimp Pizza, 208.79
+pizza, Sicilian Pizza, 241.35
+pizza, Spinach Feta Pizza, 241.94
+pizza, Spinach Pizza, 233.87
+pizza, Stuffed Crust Pizza, 255.03
+pizza, Thin Crust Pizza, 261.67
+pizza, Tuna Pizza, 254.40
+pizza, Vegetable Pizza, 255.77
+pizza, Vegetarian Pizza, 255.77
+pizza, Veggie Pizza, 230.70
+pizza, White Pizza, 246.12
+fish, Filet-o-Fish, 281.69
+fish, Fish and Chips, 195.00
+fish, Fish Sandwich, 272.78
+fish, McDonald’s Filet-o-Fish, 275.35
+fish, Fish and Chips, 195.00
+burger, Burger King Triple Whopper, 268.92
+burger, Burger King Whopper, 230.93
+burger, Burger King Whopper Jr., 233.78
+burger, Burger King Whopper with Cheese, 240.95
+burger, Cheeseburger, 262.82
+burger, Double Cheeseburger, 267.10
+burger, McDonald’s McChicken, 251.05
+burger, Veggie Burger, 180.93
+burger, Wendy’s Jr. Bacon Cheeseburger, 260.87
+burger, Wendy’s Jr. Cheeseburger, 224.81
+burger, Zinger Burger, 255.94
+burger, Hamburger, 253.64
+burger, McDonald’s Cheeseburger, 263.16
+burger, McDonald’s Double Cheeseburger, 281.94
+burger, Burger King Angry Whopper, 255.17
+burger, Burger King Double Whopper, 239.04
+burger, Burger King Double Whopper with Cheese, 249.12
+burger, Burger King Original Chicken Sandwich, 300.91

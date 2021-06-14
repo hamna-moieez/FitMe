@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -29,11 +30,14 @@ import com.example.fitmeandroid.R;
 import com.example.fitmeandroid.ui.login.LoginViewModel;
 import com.example.fitmeandroid.ui.login.LoginViewModelFactory;
 import com.example.fitmeandroid.databinding.ActivitySignUpBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SignUpActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
     private ActivitySignUpBinding binding;
+    public FirebaseAuth mAuth;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,11 @@ public class SignUpActivity extends AppCompatActivity {
 
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        mAuth = FirebaseAuth.getInstance();
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//        if(currentUser != null){
+//            reload();
+//        }
 
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
@@ -111,34 +120,25 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    loginViewModel.login(usernameEditText.getText().toString(),
+                    loginViewModel.signUp(usernameEditText.getText().toString(),
                             passwordEditText.getText().toString());
                 }
                 return false;
             }
         });
 
-        signupButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadingProgressBar.setVisibility(View.VISIBLE);
-                loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
-            }
+        signupButton.setOnClickListener(v -> {
+            loadingProgressBar.setVisibility(View.VISIBLE);
+            loginViewModel.signUp(usernameEditText.getText().toString(),
+                    passwordEditText.getText().toString());
         });
-        haveAccButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent myIntent = new Intent(SignUpActivity.this, LoginActivity.class);
-                SignUpActivity.this.startActivity(myIntent);
-            }
+        haveAccButton.setOnClickListener(v -> {
+            Intent myIntent = new Intent(SignUpActivity.this, LoginActivity.class);
+            SignUpActivity.this.startActivity(myIntent);
         });
     }
 
     private void updateUiWithUser(LoggedInUserView model) {
-//        String welcome = getString(R.string.welcome) + model.getDisplayName();
-        // TODO : initiate successful logged in experience
-//        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
         Intent myIntent = new Intent(SignUpActivity.this, AboutActivity.class);
         SignUpActivity.this.startActivity(myIntent);
     }
@@ -146,4 +146,6 @@ public class SignUpActivity extends AppCompatActivity {
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }
+    
+    private void reload() {}
 }

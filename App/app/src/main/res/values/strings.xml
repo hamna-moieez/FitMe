@@ -10,7 +10,14 @@
     <string name="action_sign_up">Sign Up</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="continue_on">Continue</string>
-
+    <string name="top_choices">Top Choices</string>
+    <string name="title_calorie">Food Calories</string>
+    <string name="food">Food Type</string>
+    <string name="serving">Serving Size (grams)</string>
+    <string name="calorie_count">Calorie Count (kcal)</string>
+    <string name="cal_count_str">Total calories in your food are: </string>
+    <string name="cal_count_btn">Add to your calorie count</string>
+    <string name="serving_txt">Enter the size of your serving in grams</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
@@ -18,6 +25,10 @@
     <string name="title_activity_sign_up">SignUpActivity</string>
     <string name="pick_date">Date of Birth</string>
     <string name="about_sum">Tell us a few of the details about yourself to help us optimize the application according to your personal goals.</string>
+    <string name="cal_sum">Just a few things to fine grain our selection to predict the amount of calories in your food more accurately</string>
+    <string name="click">Click</string>
+
+
     <string-array name="gender_list">
         <item>Male</item>
         <item>Female</item>
@@ -55,5 +66,23 @@
         <item>175 - 179</item>
         <item>180 - 184</item>
         <item>185 or more</item>
+    </string-array>
+
+    <string-array name="model_classes">
+        <item>cat</item>
+        <item>dog</item>
+    </string-array>
+
+    <string-array name="serving_list">
+        <item>100</item>
+        <item>200</item>
+        <item>300</item>
+        <item>400</item>
+        <item>500</item>
+        <item>600</item>
+        <item>700</item>
+        <item>800</item>
+        <item>900</item>
+        <item>1000</item>
     </string-array>
 </resources>

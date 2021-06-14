@@ -11,6 +11,7 @@ class LoginResult {
     @Nullable
     private Integer error;
 
+
     LoginResult(@Nullable Integer error) {
         this.error = error;
     }
