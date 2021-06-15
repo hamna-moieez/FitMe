@@ -1,2 +1,2 @@
 # FitMe
-A calorie monitor android augmented reality application.
+A calorie monitoring android application using intellegent food detector.
