@@ -26,7 +26,7 @@ public class DatabaseManager {
     public List<String> food_names = new ArrayList<>();
     public List<String> food_calories = new ArrayList<>();
     public List<String> food_ids = new ArrayList<>();
-    private HashMap<String, String> similarFoods = new HashMap<>();
+    private HashMap<String, String> similar_food_cal = new HashMap<>();
 
     private FirebaseDatabase rootNode;
     private DatabaseReference reference;
@@ -74,8 +74,9 @@ public class DatabaseManager {
     }
 
 
-    public void retrieveFromFirebase(){
+    public HashMap<String, String> retrieveFromFirebase(String anchor, SimilarCal callback){
         reference = initDB("foodCalories");
+        HashMap<String, String> similarFoods;
         reference.addValueEventListener(new ValueEventListener() {
 
             @Override
@@ -83,10 +84,18 @@ public class DatabaseManager {
                 food_calories.clear();
                 List<String> keys = new ArrayList<>();
                 for(DataSnapshot keyNode : snapshot.getChildren()){
-                    keys.add(keyNode.getKey());
-                    FoodCalorie foodCalorie = keyNode.getValue(FoodCalorie.class);
-                    getDataInForm(foodCalorie, keyNode.getKey());
+                    if (keyNode.getKey().equals(anchor)){ // get the similar foods only.
+                        String key = keyNode.getKey();
+                        for(DataSnapshot foodCal : keyNode.getChildren()){
+                            FoodCalorie foodCalorie = foodCal.getValue(FoodCalorie.class);
+                            keys.add(key);
+                            String food_name = foodCalorie.getFood_name();
+                            String food_calorie = foodCalorie.getFood_calorie();
+                            similar_food_cal.put(food_name, food_calorie);
+                        }
+                    }
                 }
+                callback.onCallback(similar_food_cal);
             }
 
             @Override
@@ -94,33 +103,10 @@ public class DatabaseManager {
                 System.out.println("could not read data");
             }
         });
+
+        return similar_food_cal;
     }
 
-    private void getDataInForm(FoodCalorie data, String key){
-
-
-        String food_name = data.getFood_name();
-        String food_calorie = data.getFood_calorie();
-        String food_key = key;
-
-        food_names.add(food_name);
-        food_ids.add(food_key);
-        food_calories.add(food_calorie);
-    }
-
-    public HashMap<String, String> match_based_on_result(String anchor, List<String> calories, List<String> names){
-        HashMap<String, String> similar_foods = new HashMap<>();
-        for(int i = 0; i < names.size(); i++){
-            String calorie = calories.get(i);
-            String name = names.get(i);
-            anchor = anchor.toLowerCase();
-            name = name.toLowerCase();
-            if (name.contains(anchor)){ // checking if the name is present in the query
-                similar_foods.put(name, calorie);
-            }
-        }
-        return similar_foods;
-    }
 
     public Boolean checkDBState(String tableName){
         final Boolean[] flag = {false};

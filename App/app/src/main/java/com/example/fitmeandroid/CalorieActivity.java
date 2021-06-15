@@ -32,6 +32,9 @@ public class CalorieActivity extends AppCompatActivity {
     private HashMap<String, String> foodTypes = new HashMap<>();
     private AutoCompleteTextView mac_food, mac_serving;
 
+    List<String> foodList;
+    ArrayList<String> similar_cals;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,23 +53,26 @@ public class CalorieActivity extends AppCompatActivity {
             }
         }
         dbManager = new DatabaseManager();
-        dbManager.retrieveFromFirebase();
-        foodTypes = dbManager.match_based_on_result(foodChoice, dbManager.food_calories, dbManager.food_names);
+        dbManager.retrieveFromFirebase(foodChoice, new SimilarCal() {
+            @Override
+            public void onCallback(HashMap<String, String> similar_vals) {
+                mac_food = findViewById(R.id.mac_food);
+                similar_cals = new ArrayList<>(similar_vals.values());
+                foodList = new ArrayList<>(similar_vals.keySet());
+                ArrayAdapter<String> adapter_food = new ArrayAdapter<>(getApplicationContext(), R.layout.dropdown_menu, foodList);
+                mac_food.setAdapter(adapter_food);
+            }
+        });
 
-        mac_food = findViewById(R.id.mac_food);
         mac_serving = findViewById(R.id.mac_serving);
-
-        String[] foodList = foodTypes.keySet().toArray(new String[0]);
         String[] serving = getResources().getStringArray(R.array.serving_list);
-
-        ArrayAdapter<String> adapter_food = new ArrayAdapter<String>(this, R.layout.dropdown_menu, foodList);
         ArrayAdapter<String> adapter_serving = new ArrayAdapter<String>(this, R.layout.dropdown_menu, serving);
-
-        mac_food.setAdapter(adapter_food);
         mac_serving.setAdapter(adapter_serving);
 
         calCount = findViewById(R.id.add_cal_count);
-        defaultCal = "300";
+//        mac_food.setOnItemClickListener((adapterView, view, i, l) -> {
+//            defaultCal = similar_cals.get(i); // TODO: Set the cal here which is to be added.
+//        });
 
         initViews();
         setupListeners();

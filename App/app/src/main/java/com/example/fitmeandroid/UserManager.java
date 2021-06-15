@@ -19,7 +19,6 @@ import java.util.Objects;
 public class UserManager {
 
     private DatabaseReference ref;
-    public ArrayList<String> userInfo = new ArrayList<String>();
 
     public String[] getCurrentUser(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -91,18 +90,80 @@ public class UserManager {
 
     }
 
-    public void getUserData(User user){
-        String user_email = user.getEmail();
-        String user_dob = user.getDob();
-        String user_gender = user.getGender();
-        String user_cal = user.getCalorie();
-        String user_weight = user.getWeight();
-        String user_height = user.getHeight();
-        userInfo.add(user_email);
-        userInfo.add(user_dob);
-        userInfo.add(user_gender);
-        userInfo.add(user_cal);
-        userInfo.add(user_weight);
-        userInfo.add(user_height);
+    public void writeCalorieConsumption(Double Sun, Double Mon, Double Tue, Double Wed, Double Thu, Double Fri, Double Sat){
+        ref = dbReference("calorieConsumption");
+        String [] authInfo = getCurrentUser();
+        String uid = authInfo[0];
+        ref = ref.child(uid);
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                CalorieConsumption cc = new CalorieConsumption(Sun, Mon, Tue, Wed, Thu, Fri, Sat);
+                cc.setSunday(Sun);
+                cc.setMonday(Mon);
+                cc.setTuesday(Tue);
+                cc.setWednesday(Wed);
+                cc.setThursday(Thu);
+                cc.setFriday(Fri);
+                cc.setSaturday(Sat);
+                ref.setValue(cc);
+                Log.i("FB_ADD", "User information was successfully added");
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.i("FB_error", "could not write user data");
+            }
+        });
     }
+
+    public void readCalorieConsumption(CallbackCalorie calCallback){
+        ref = dbReference("calorieConsumption");
+        String [] authInfo = getCurrentUser();
+        String userId = authInfo[0];
+        ref = ref.child(userId);
+        ref.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                CalorieConsumption cal = snapshot.getValue(CalorieConsumption.class);
+                calCallback.onCallback(cal);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.i("FB_error", "could not read user data");
+            }
+        });
+
+    }
+
+    public void updateDailyCalorie(String day, Double val){
+        ref = dbReference("calorieConsumption");
+        String [] authInfo = getCurrentUser();
+        String userId = authInfo[0];
+        ref = ref.child(userId);
+        ref.child(day).setValue(val);
+    }
+
+    public void readDailyCalorie(String day){
+        ref = dbReference("calorieConsumption");
+        String [] authInfo = getCurrentUser();
+        String userId = authInfo[0];
+        ref = ref.child(userId);
+        ref.child(day);
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Double calories = dataSnapshot.getValue(Double.class);
+                Log.i("Today_cals", String.valueOf(calories));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 }
