@@ -1,7 +1,13 @@
 package com.example.fitmeandroid;
 import com.github.shchurov.horizontalwheelview.HorizontalWheelView;
+
+import com.google.android.material.textfield.TextInputLayout;
+
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -18,12 +24,15 @@ import java.util.Set;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import static com.github.shchurov.horizontalwheelview.HorizontalWheelView.SCROLL_STATE_IDLE;
+
 public class CalorieActivity extends AppCompatActivity {
 
     private HorizontalWheelView horizontalWheelView;
+    private TouchHandler touchHandler;
     private TextView tvAngle;
     private Button calCount;
-    private String defaultCal;
+    private String defaultCal = "0.0";
     private String foodChoice;
     private int choiceId;
     private ImageView foodImage;
@@ -31,6 +40,8 @@ public class CalorieActivity extends AppCompatActivity {
     private DatabaseManager dbManager;
     private HashMap<String, String> foodTypes = new HashMap<>();
     private AutoCompleteTextView mac_food, mac_serving;
+    private String foodName;
+    private Double foodCals, servingSize, totalCals;
 
     List<String> foodList;
     ArrayList<String> similar_cals;
@@ -52,11 +63,11 @@ public class CalorieActivity extends AppCompatActivity {
                 foodImage.setImageResource(categoryArray[i]);
             }
         }
+        mac_food = findViewById(R.id.mac_food);
         dbManager = new DatabaseManager();
         dbManager.retrieveFromFirebase(foodChoice, new SimilarCal() {
             @Override
             public void onCallback(HashMap<String, String> similar_vals) {
-                mac_food = findViewById(R.id.mac_food);
                 similar_cals = new ArrayList<>(similar_vals.values());
                 foodList = new ArrayList<>(similar_vals.keySet());
                 ArrayAdapter<String> adapter_food = new ArrayAdapter<>(getApplicationContext(), R.layout.dropdown_menu, foodList);
@@ -70,15 +81,28 @@ public class CalorieActivity extends AppCompatActivity {
         mac_serving.setAdapter(adapter_serving);
 
         calCount = findViewById(R.id.add_cal_count);
-//        mac_food.setOnItemClickListener((adapterView, view, i, l) -> {
-//            defaultCal = similar_cals.get(i); // TODO: Set the cal here which is to be added.
-//        });
+        mac_food.setOnItemClickListener((adapterView, view, i, l) -> {
+            foodCals = Double.valueOf(similar_cals.get(i));
+        });
+
+        mac_serving.setOnItemClickListener((adapterView, view, i, l) -> {
+            servingSize = Double.valueOf(mac_serving.getText().toString());
+            totalCals = calorieCalculator(foodCals, servingSize);
+            touchHandler = new TouchHandler(horizontalWheelView);
+            touchHandler.playSettlingAnimation(totalCals/100.0);
+            setupListeners();
+            updateText();
+            touchHandler.updateScrollStateIfRequired(SCROLL_STATE_IDLE);
+        });
 
         initViews();
-        setupListeners();
-        updateUi();
+
     }
 
+    private Double calorieCalculator(Double foodCals, Double servingSize) {
+        return (foodCals/100.0) * servingSize;
+
+    }
 
 
     private void getTopChoice(){
@@ -102,45 +126,32 @@ public class CalorieActivity extends AppCompatActivity {
 //        cls2id.put("pizza", 9); // TODO: add pizza class
     }
 
-    private void calculateCal(){
-
-    }
 
     private void initViews() {
         horizontalWheelView = (HorizontalWheelView) findViewById(R.id.horizontalWheelView);
         tvAngle = (TextView) findViewById(R.id.tvAngle);
         tvAngle.setText(defaultCal);
-//        ivRocket = (ImageView) findViewById(R.id.ivRocket);
+
     }
 
     private void setupListeners() {
         horizontalWheelView.setListener(new HorizontalWheelView.Listener() {
             @Override
             public void onRotationChanged(double radians) {
-                updateUi();
+                updateText();
             }
         });
     }
 
-    private void updateUi() {
-//        updateText();
-        updateImage();
-    }
-
     private void updateText() {
-        String text = String.format(Locale.US, "%.0f°", horizontalWheelView.getDegreesAngle());
+        String text = String.format(Locale.US, "%.0f", totalCals);
         tvAngle.setText(text);
-    }
-
-    private void updateImage() {
-        float angle = (float) horizontalWheelView.getDegreesAngle();
-//        ivRocket.setRotation(angle);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        updateUi();
+        updateText();
     }
 
 }
