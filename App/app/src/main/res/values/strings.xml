@@ -10,6 +10,7 @@
     <string name="action_sign_up">Sign Up</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="continue_on">Continue</string>
+    <string name="add_to_goal">Add to Calorie Goal</string>
     <string name="top_choices">Top Choices</string>
     <string name="title_calorie">Food Calories</string>
     <string name="food">Food Type</string>

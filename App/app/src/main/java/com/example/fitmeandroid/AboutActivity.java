@@ -24,6 +24,8 @@ public class AboutActivity extends AppCompatActivity{
     private String[] gender, calorie, weight, height;
     private Button userInfo;
     private UserManager uManager;
+    private CalorieManager calManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,6 +92,8 @@ public class AboutActivity extends AppCompatActivity{
         String w = mac4.getText().toString();
         uManager = new UserManager();
         uManager.addUserInfo(dob, gen, cal, h, w);
+        calManager = new CalorieManager();
+        calManager.writeCalorieConsumption(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

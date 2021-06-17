@@ -37,7 +37,7 @@ public class DatabaseManager {
         return reference;
     }
 
-    private void dumpToFirebase(String food_name, String calorie, Integer food_id) {
+    private void dumpToFirebase(String base, String food_name, String calorie, Integer food_id) {
         reference = initDB("foodCalories");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -45,7 +45,7 @@ public class DatabaseManager {
                 FoodCalorie newCalorie = new FoodCalorie(food_name, calorie);
                 newCalorie.setFood_name(food_name);
                 newCalorie.setFood_calorie(calorie);
-                reference.child(String.valueOf(food_id)).setValue(newCalorie);
+                reference.child(base).child(String.valueOf(food_id)).setValue(newCalorie);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -59,14 +59,15 @@ public class DatabaseManager {
         Integer food_id = 1;
         BufferedReader reader = new BufferedReader(new InputStreamReader(ips));
         try {
-            String line, name, calorie;
+            String base, line, name, calorie;
             while((line = reader.readLine()) != null){
                 String[] strings = TextUtils.split(line, ",");
                 if(strings.length == 0){ continue; }
                 food_id += 1;
+                base = strings[0];
                 name = strings[1];
                 calorie = strings[2];
-                dumpToFirebase(name, calorie, food_id);
+                dumpToFirebase(base, name, calorie, food_id);
             }
         }finally{
             reader.close();

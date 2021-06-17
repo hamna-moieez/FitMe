@@ -1,7 +1,7 @@
 package com.example.fitmeandroid;
 
 public class CalorieConsumption {
-    public Double Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday;
+    private Double Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday;
 
 
     public CalorieConsumption() {
@@ -22,56 +22,56 @@ public class CalorieConsumption {
         return Sunday;
     }
 
-    public void setSunday(Double sunday) {
-        Sunday = sunday;
+    public void setSunday(Double Sun) {
+        Sunday = Sun;
     }
 
     public Double getMonday() {
         return Monday;
     }
 
-    public void setMonday(Double monday) {
-        Monday = monday;
+    public void setMonday(Double Mon) {
+        Monday = Mon;
     }
 
     public Double getTuesday() {
         return Tuesday;
     }
 
-    public void setTuesday(Double tuesday) {
-        Tuesday = tuesday;
+    public void setTuesday(Double Tue) {
+        Tuesday = Tue;
     }
 
     public Double getWednesday() {
         return Wednesday;
     }
 
-    public void setWednesday(Double wednesday) {
-        Wednesday = wednesday;
+    public void setWednesday(Double Wed) {
+        Wednesday = Wed;
     }
 
     public Double getThursday() {
         return Thursday;
     }
 
-    public void setThursday(Double thursday) {
-        Thursday = thursday;
+    public void setThursday(Double Thu) {
+        Thursday = Thu;
     }
 
     public Double getFriday() {
         return Friday;
     }
 
-    public void setFriday(Double friday) {
-        Friday = friday;
+    public void setFriday(Double Fri) {
+        Friday = Fri;
     }
 
     public Double getSaturday() {
         return Saturday;
     }
 
-    public void setSaturday(Double saturday) {
-        Saturday = saturday;
+    public void setSaturday(Double Sat) {
+        Saturday = Sat;
     }
 
 }

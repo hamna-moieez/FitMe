@@ -23,13 +23,18 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     public DatabaseManager dbManager;
-    private Boolean flag;
+    Date date = Calendar.getInstance().getTime();
+    String day = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(date);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
